@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OnlyContent Agency — Belgavi's Content Powerhouse</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#050505;--surface:#0d0d0d;--card:#111111;--border:#1e1e1e;
+  --accent:#ff3c00;--accent2:#ff8c42;--gold:#f5c842;
+  --text:#f0ede8;--muted:#666560;--white:#ffffff;--green:#4caf7d;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:12px;height:12px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s;}
+.cursor-trail{position:fixed;width:36px;height:36px;border:1px solid rgba(255,60,0,.4);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease;}
+body:has(a:hover) .cursor,body:has(button:hover) .cursor{width:20px;height:20px;background:var(--gold);}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.4;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(5,5,5,.95),transparent);backdrop-filter:blur(2px);}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--white);}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:10px 24px;border:none;border-radius:100px;cursor:none;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+.nav-cta:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(255,60,0,.4);}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,60,0,.12) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(245,200,66,.06) 0%,transparent 50%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,60,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,60,0,.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%);}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,60,0,.08);border:1px solid rgba(255,60,0,.2);border-radius:100px;padding:6px 16px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:28px;animation:fadeUp .8s ease both;}
+.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(52px,9vw,120px);font-weight:800;line-height:.9;letter-spacing:-3px;animation:fadeUp .8s .1s ease both;}
+.line1{display:block;color:var(--white);}
+.line2{display:block;background:linear-gradient(135deg,var(--accent),var(--accent2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{margin-top:24px;font-size:17px;color:var(--muted);max-width:500px;line-height:1.7;font-weight:300;animation:fadeUp .8s .2s ease both;}
+.hero-actions{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s .3s ease both;}
+.btn-primary{background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;padding:14px 32px;border:none;border-radius:100px;cursor:none;text-decoration:none;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(255,60,0,.4);}
+.btn-secondary{background:transparent;color:var(--text);font-family:'Syne',sans-serif;font-weight:600;font-size:14px;padding:14px 32px;border:1px solid var(--border);border-radius:100px;cursor:none;text-decoration:none;transition:border-color .2s,transform .2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-secondary:hover{border-color:var(--accent);transform:translateY(-2px);}
+.hero-stats{display:flex;gap:48px;margin-top:72px;animation:fadeUp .8s .4s ease both;}
+.stat-item{text-align:center;}
+.stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:36px;background:linear-gradient(135deg,var(--white),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:1px;}
+.scroll-ind{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp .8s .6s ease both;}
+.scroll-ind span{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+.scroll-line{width:1px;height:60px;background:linear-gradient(to bottom,var(--accent),transparent);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;background:var(--surface);}
+.marquee-track{display:flex;animation:marquee 22s linear infinite;white-space:nowrap;}
+.marquee-item{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:0 32px;display:flex;align-items:center;gap:16px;}
+.marquee-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+section{padding:100px 48px;}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
+.section-label::before{content:'';width:24px;height:1px;background:var(--accent);}
+.section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,5vw,60px);line-height:1;letter-spacing:-1px;color:var(--white);}
+.section-title span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.projects-section{max-width:1200px;margin:0 auto;}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;cursor:none;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative;}
+.project-card::after{content:'🔍 View on Google';position:absolute;bottom:0;left:0;right:0;background:rgba(255,60,0,.9);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;text-align:center;padding:10px;transform:translateY(100%);transition:transform .25s ease;}
+.project-card:hover::after{transform:translateY(0);}
+.project-card:hover{transform:translateY(-8px);border-color:rgba(255,60,0,.3);box-shadow:0 20px 60px rgba(0,0,0,.4);}
+.project-card.featured{grid-column:span 2;}
+.project-thumb{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-direction:column;gap:10px;}
+.project-card.featured .project-thumb{height:260px;}
+.project-thumb img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .4s;}
+.project-card:hover .project-thumb img{transform:scale(1.05);}
+.project-thumb .ph-icon{font-size:44px;position:relative;z-index:1;}
+.project-thumb .ph-label{font-size:12px;color:rgba(255,255,255,.35);font-family:'Outfit',sans-serif;position:relative;z-index:1;}
+.project-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--card) 0%,rgba(0,0,0,.2) 60%,transparent 100%);}
+.project-tag{position:absolute;top:16px;left:16px;background:rgba(0,0,0,.7);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent);z-index:2;}
+.project-body{padding:20px;}
+.project-name{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;color:var(--white);}
+.project-desc{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6;}
+.project-stats{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap;}
+.project-stat{font-size:12px;color:var(--muted);}
+.project-stat b{color:var(--green);}
+.pb1{background:linear-gradient(135deg,#1a0800,#2d1100);}
+.pb2{background:linear-gradient(135deg,#00081a,#001133);}
+.pb3{background:linear-gradient(135deg,#0d0017,#1a0033);}
+.pb4{background:linear-gradient(135deg,#1a0a00,#2d1500);}
+.pb5{background:linear-gradient(135deg,#001a0a,#002d15);}
+.pb6{background:linear-gradient(135deg,#001a1a,#002d2d);}
+.pb7{background:linear-gradient(135deg,#1a0010,#2d0018);}
+.img-tip{text-align:center;margin-top:20px;font-size:12px;color:var(--muted);background:rgba(245,200,66,.06);border:1px solid rgba(245,200,66,.15);border-radius:10px;padding:12px 20px;max-width:600px;margin-left:auto;margin-right:auto;}
+.services-section{max-width:1100px;margin:0 auto;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+.service-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px 28px;transition:all .3s;position:relative;overflow:hidden;}
+.service-card::after{content:'';position:absolute;bottom:-40px;right:-40px;width:100px;height:100px;background:var(--accent);opacity:0;border-radius:50%;filter:blur(40px);transition:opacity .3s;}
+.service-card:hover::after{opacity:.15;}
+.service-card:hover{border-color:rgba(255,60,0,.3);transform:translateY(-4px);}
+.service-card.pop{border-color:rgba(255,60,0,.3);background:rgba(255,60,0,.04);}
+.service-badge{display:inline-block;background:var(--accent);color:#fff;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:16px;}
+.service-icon{width:52px;height:52px;border-radius:14px;background:rgba(255,60,0,.1);border:1px solid rgba(255,60,0,.2);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;}
+.service-name{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;color:var(--white);}
+.service-desc{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.6;}
+.service-price{margin-top:20px;font-size:28px;font-weight:800;font-family:'Syne',sans-serif;color:var(--white);}
+.service-price span{font-size:13px;color:var(--muted);font-family:'Outfit',sans-serif;font-weight:400;}
+.includes{margin-top:16px;list-style:none;display:flex;flex-direction:column;gap:8px;}
+.includes li{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px;}
+.includes li::before{content:'✓';color:var(--green);font-weight:700;font-size:12px;}
+.reviews-section{max-width:1200px;margin:0 auto;}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+.review-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;transition:transform .3s,border-color .3s;}
+.review-card:hover{transform:translateY(-4px);border-color:rgba(255,60,0,.2);}
+.stars{display:flex;gap:4px;margin-bottom:16px;}
+.star{color:var(--gold);font-size:14px;}
+.review-text{font-size:14px;color:#a0a09a;line-height:1.7;font-style:italic;}
+.review-author{display:flex;align-items:center;gap:12px;margin-top:20px;}
+.av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#fff;flex-shrink:0;}
+.author-name{font-weight:600;font-size:14px;color:var(--white);}
+.author-co{font-size:12px;color:var(--muted);}
+.live-reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
+.submit-section{max-width:860px;margin:0 auto;text-align:center;}
+.form-box{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:40px;margin-top:40px;text-align:left;position:relative;overflow:hidden;}
+.form-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--accent2),var(--accent));}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{display:flex;flex-direction:column;gap:8px;}
+.fg.full{grid-column:span 2;}
+.flabel{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+.finput,.fselect,.ftextarea{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--text);font-family:'Outfit',sans-serif;font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
+.finput:focus,.fselect:focus,.ftextarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,200,66,.08);}
+.finput::placeholder,.ftextarea::placeholder{color:var(--muted);}
+.fselect{appearance:none;cursor:none;}
+.fselect option{background:var(--card);}
+.ftextarea{resize:vertical;min-height:100px;}
+.star-row{display:flex;gap:8px;margin-top:4px;}
+.sbtn{font-size:26px;cursor:none;opacity:.25;transition:opacity .2s,transform .15s;}
+.sbtn.on{opacity:1;}
+.sbtn:hover{transform:scale(1.2);}
+.rv-submit{margin-top:10px;width:100%;background:linear-gradient(135deg,var(--gold),var(--accent2));color:#000;border:none;border-radius:14px;padding:16px;cursor:none;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;transition:transform .2s,box-shadow .2s;}
+.rv-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(245,200,66,.3);}
+.rv-note{text-align:center;margin-top:12px;font-size:12px;color:var(--muted);}
+.rv-done{display:none;text-align:center;padding:32px;}
+.rv-done-icon{font-size:48px;}
+.rv-done-title{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:var(--white);margin-top:12px;}
+.rv-done-sub{color:var(--muted);margin-top:8px;font-size:14px;line-height:1.6;}
+.admin-toggle{background:rgba(245,200,66,.08);border:1px solid rgba(245,200,66,.25);color:var(--gold);border-radius:100px;padding:8px 22px;font-size:12px;font-weight:700;cursor:none;font-family:'Syne',sans-serif;margin-top:16px;transition:background .2s;}
+.admin-toggle:hover{background:rgba(245,200,66,.18);}
+.admin-panel{display:none;background:rgba(245,200,66,.04);border:1px solid rgba(245,200,66,.2);border-radius:16px;padding:24px;margin-top:20px;text-align:left;}
+.admin-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--gold);margin-bottom:14px;}
+.pcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;}
+.pname{font-weight:600;font-size:14px;color:var(--white);}
+.pco{font-size:12px;color:var(--muted);}
+.pstars{color:var(--gold);font-size:13px;margin-top:3px;}
+.ptext{font-size:13px;color:#a0a09a;margin-top:8px;line-height:1.6;font-style:italic;}
+.pactions{display:flex;gap:8px;margin-top:12px;}
+.abtn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:none;}
+.rbtn{background:rgba(255,60,0,.12);color:var(--accent);border:1px solid rgba(255,60,0,.3);border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:none;}
+.no-pending{color:var(--muted);font-size:13px;text-align:center;padding:16px;}
+.contact-section{max-width:860px;margin:0 auto;text-align:center;}
+.main-form-box{background:var(--card);border:1px solid var(--border);border-radius:28px;padding:48px;margin-top:48px;text-align:left;position:relative;overflow:hidden;}
+.main-form-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--gold));}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.main-submit{margin-top:8px;width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:14px;padding:18px;cursor:none;font-family:'Syne',sans-serif;font-weight:700;font-size:16px;transition:transform .2s,box-shadow .2s;}
+.main-submit:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(255,60,0,.4);}
+.fnote{text-align:center;margin-top:14px;font-size:12px;color:var(--muted);}
+.success-box{display:none;text-align:center;padding:48px;}
+.wa-float{position:fixed;bottom:32px;right:32px;z-index:500;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;cursor:none;text-decoration:none;animation:waPulse 2s infinite;}
+.wa-float svg{width:28px;height:28px;fill:#fff;}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 24px rgba(37,211,102,.4);}50%{box-shadow:0 4px 32px rgba(37,211,102,.7),0 0 0 8px rgba(37,211,102,.1);}}
+footer{border-top:1px solid var(--border);padding:48px;text-align:center;}
+.footer-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:24px;color:var(--white);margin-bottom:8px;}
+.footer-logo span{color:var(--accent);}
+.divider-line{max-width:1200px;margin:0 auto;height:1px;background:var(--border);}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+@media(max-width:768px){
+  nav{padding:16px 20px;}.nav-links{display:none;}
+  section{padding:60px 20px;}
+  .projects-grid,.services-grid,.reviews-grid,.live-reviews-grid{grid-template-columns:1fr;}
+  .project-card.featured{grid-column:span 1;}
+  .f2,.fgrid{grid-template-columns:1fr;}
+  .fg.full{grid-column:span 1;}
+  .form-box,.main-form-box{padding:24px;}
+  .hero-stats{gap:24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Only<span>Content</span></div>
+  <ul class="nav-links">
+    <li><a href="#projects">Our Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Work With Us →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow"><span></span> Belagavi, Karnataka's #1 Content Agency</div>
+  <h1><span class="line1">WE MAKE</span><span class="line2">BRANDS VIRAL</span></h1>
+  <p class="hero-sub">Reels that stop the scroll. Content that converts. Results that speak. Built right here in Belgavi for brands that want to dominate Karnataka.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">🚀 Start a Project</a>
+    <a href="#projects" class="btn-secondary">View Our Work ↓</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num" id="c1">0</div><div class="stat-label">Brands Grown</div></div>
+    <div class="stat-item"><div class="stat-num" id="c2">0M+</div><div class="stat-label">Views Generated</div></div>
+    <div class="stat-item"><div class="stat-num" id="c3">0%</div><div class="stat-label">Client Retention</div></div>
+  </div>
+  <div class="scroll-ind"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Instagram Reels<span class="marquee-dot"></span></span>
+    <span class="marquee-item">YouTube Shorts<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Brand Strategy<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Viral Content<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Belagavi · Karnataka<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Video Editing<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Full Management<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Instagram Reels<span class="marquee-dot"></span></span>
+    <span class="marquee-item">YouTube Shorts<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Brand Strategy<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Viral Content<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Belagavi · Karnataka<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Video Editing<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Full Management<span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- OUR WORK -->
+<section id="projects">
+  <div class="projects-section">
+    <div class="reveal">
+      <div class="section-label">Our Work</div>
+      <h2 class="section-title">Local brands we<br/><span>made unforgettable</span></h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card featured reveal d1" onclick="window.open('https://www.google.com/search?q=Bake+and+Brew+Cafe+Belagavi','_blank')">
+        <div class="project-thumb pb1">
+          <div class="ph-icon">☕</div>
+          <div class="ph-label">Add project image</div>
+          <div class="project-overlay"></div>
+          <div class="project-tag">Café · Belagavi</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Bake &amp; Brew Café</div>
+          <div class="project-desc">Cinematic café Reels showcasing signature drinks, cozy ambience and behind-the-scenes moments — driving packed tables every weekend in Belagavi.</div>
+          <div class="project-stats">
+            <div class="project-stat">📈 <b>Add views</b></div>
+            <div class="project-stat">❤️ <b>Add followers gained</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal d2" onclick="window.open('https://www.google.com/search?q=Belgaum+District+Pickleball+Association+Belagavi','_blank')">
+        <div class="project-thumb pb2">
+          <div class="ph-icon">🏓</div>
+          <div class="ph-label">Add project image</div>
+          <div class="project-overlay"></div>
+          <div class="project-tag">Sports · Belagavi</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Belgaum District Pickleball Assoc.</div>
+          <div class="project-desc">High-energy match highlights and event coverage Reels that put Belagavi pickleball on the Karnataka map.</div>
+          <div class="project-stats">
+            <div class="project-stat">📈 <b>Add views</b></div>
+            <div class="project-stat">🏆 <b>Add registrations</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal d1" onclick="window.open('https://www.google.com/search?q=Kaisur+Sarees+Belagavi','_blank')">
+        <div class="project-thumb pb3">
+          <div class="ph-icon">🥻</div>
+          <div class="ph-label">Add project image</div>
+          <div class="project-overlay"></div>
+          <div class="project-tag">Textile · Belagavi</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Kaisur Sarees</div>
+          <div class="project-desc">Elegant draping Reels and festive collection drops that drove massive DM inquiries and footfall to the showroom.</div>
+          <div class="project-stats">
+            <div class="project-stat">📈 <b>Add views</b></div>
+            <div class="project-stat">🛍️ <b>Add sales impact</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal d2" onclick="window.open('https://www.google.com/search?q=Nagashanti+Hero+Belagavi','_blank')">
+        <div class="project-thumb pb4">
+          <div class="ph-icon">🏍️</div>
+          <div class="ph-label">Add project image</div>
+          <div class="project-overlay"></div>
+          <div class="project-tag">Vehicles · Belagavi</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Nagashanti Hero</div>
+          <div class="project-desc">Dynamic bike launch Reels, customer delivery moments and showroom walkthroughs that put Nagashanti on every biker's feed.</div>
+          <div class="project-stats">
+            <div class="project-stat">📈 <b>Add views</b></div>
+            <div class="project-stat">🏍️ <b>Add enquiries</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal d1" onclick="window.open('https://www.google.com/search?q=Lions+Fitness+Gym+Belagavi','_blank')">
+        <div class="project-thumb pb5">
+          <div class="ph-icon">💪</div>
+          <div class="ph-label">Add project image</div>
+          <div class="project-overlay"></div>
+          <div class="project-tag">Fitness · Belagavi</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Lions Fitness Gym</div>
+          <div class="project-desc">Transformation stories, workout clips and motivational Reels that turned Lions Fitness into Belagavi's most-followed gym page.</div>
+          <div class="project-stats">
+            <div class="project-stat">📈 <b>Add views</b></div>
+            <div class="project-stat">🏋️ <b>Add new members</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal d2" onclick="window.open('https://www.google.com/search?q=Tamasha+Experience+Belagavi','_blank')">
+        <div class="project-thumb pb6">
+          <div class="ph-icon">🎭</div>
+          <div class="ph-label">Add project image</div>
+          <div class="project-overlay"></div>
+          <div class="project-tag">Entertainment · Belagavi</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Tamasha Experience</div>
+          <div class="project-desc">Event highlight reels that created massive FOMO online and drove ticket sales through Instagram alone.</div>
+          <div class="project-stats">
+            <div class="project-stat">📈 <b>Add views</b></div>
+            <div class="project-stat">🎟️ <b>Add ticket sales</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card featured reveal d1" onclick="window.open('https://www.google.com/search?q=Leelavati+Dining+Belagavi','_blank')">
+        <div class="project-thumb pb7">
+          <div class="ph-icon">🍽️</div>
+          <div class="ph-label">Add project image</div>
+          <div class="project-overlay"></div>
+          <div class="project-tag">Restaurant · Belagavi</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Leelavati Dining</div>
+          <div class="project-desc">Mouth-watering food Reels, chef specials and dining ambience content that made Leelavati the most talked-about restaurant in Belagavi.</div>
+          <div class="project-stats">
+            <div class="project-stat">📈 <b>Add views</b></div>
+            <div class="project-stat">🍽️ <b>Add reservations</b></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-section">
+    <div class="reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Simple pricing.<br/><span>Serious results.</span></h2>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card reveal d1">
+        <div class="service-icon">🎬</div>
+        <div class="service-name">Reels Editing</div>
+        <div class="service-desc">One killer Reel — trending audio, smooth cuts, styled captions and 9:16 export ready to post. No watermark.</div>
+        <div class="service-price">₹899 <span>/ reel</span></div>
+        <ul class="includes">
+          <li>Trending audio sync</li>
+          <li>Styled auto-captions</li>
+          <li>Colour grading &amp; transitions</li>
+          <li>Watermark-free delivery</li>
+          <li>24–48hr turnaround</li>
+        </ul>
+      </div>
+
+      <div class="service-card pop reveal d2">
+        <div class="service-badge">Most Popular</div>
+        <div class="service-icon">📱</div>
+        <div class="service-name">Content Strategy</div>
+        <div class="service-desc">A full month of content planned, scripted and scheduled so you never run out of ideas again.</div>
+        <div class="service-price">₹3,000 <span>/ month</span></div>
+        <ul class="includes">
+          <li>30-day content calendar</li>
+          <li>Caption &amp; hook writing</li>
+          <li>Hashtag research</li>
+          <li>Weekly trend analysis</li>
+          <li>WhatsApp support</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal d3">
+        <div class="service-icon">⚡</div>
+        <div class="service-name">Full Management</div>
+        <div class="service-desc">We run your entire Instagram — strategy, editing, posting, engagement. You focus on your business.</div>
+        <div class="service-price">₹9,000 <span>/ month</span></div>
+        <ul class="includes">
+          <li>Everything in Strategy</li>
+          <li>8 Reels edited &amp; posted</li>
+          <li>Daily story management</li>
+          <li>Comment &amp; DM replies</li>
+          <li>Monthly growth report</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- CLIENT REVIEWS (hardcoded + dynamic approved) -->
+<section id="reviews">
+  <div class="reviews-section">
+    <div class="reveal">
+      <div class="section-label">Client Results</div>
+      <h2 class="section-title">What Belagavi brands<br/><span>say about us</span></h2>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card reveal d1">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="review-text">"OnlyContent transformed our café's Instagram completely. Our weekend tables are always packed now — customers come specifically saying they found us through our Reels."</div>
+        <div class="review-author">
+          <div class="av" style="background:linear-gradient(135deg,#ff3c00,#ff8c42)">B</div>
+          <div><div class="author-name">Bake &amp; Brew Team</div><div class="author-co">Bake &amp; Brew Café, Belagavi</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal d2">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="review-text">"The Reels they made for our saree collection went viral in Belgavi. We had customers calling from Dharwad and Hubli just because they saw our content online."</div>
+        <div class="review-author">
+          <div class="av" style="background:linear-gradient(135deg,#7c3aed,#a855f7)">K</div>
+          <div><div class="author-name">Kaisur Sarees</div><div class="author-co">Kaisur Sarees, Belagavi</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal d3">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="review-text">"Gym memberships went up after they started managing our content. The transformation Reels build real trust before people even walk through the door."</div>
+        <div class="review-author">
+          <div class="av" style="background:linear-gradient(135deg,#059669,#10b981)">L</div>
+          <div><div class="author-name">Lions Fitness</div><div class="author-co">Lions Fitness Gym, Belagavi</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DYNAMIC APPROVED REVIEWS -->
+    <div id="liveReviews"></div>
+
+    <!-- ADMIN PANEL — hidden, access via yoursite.com/#admin -->
+    <div class="admin-panel" id="adminPanel">
+      <div class="admin-title">⏳ Pending Reviews</div>
+      <div id="pendingList"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- SUBMIT REVIEW -->
+<section style="padding:80px 48px;">
+  <div class="submit-section">
+    <div class="reveal">
+      <div class="section-label" style="justify-content:center;">Share Your Experience</div>
+      <h2 class="section-title" style="text-align:center;">Worked with us?<br/><span>Leave a review</span></h2>
+      <p style="color:var(--muted);margin-top:16px;font-size:15px;">Your review is sent to us for approval before it goes live on this page.</p>
+    </div>
+    <div class="form-box reveal d1">
+      <div id="rvForm">
+        <div class="f2">
+          <div class="fg">
+            <label class="flabel">Your Name *</label>
+            <input class="finput" id="rv_name" type="text" placeholder="Your full name"/>
+          </div>
+          <div class="fg">
+            <label class="flabel">Brand / Company *</label>
+            <input class="finput" id="rv_co" type="text" placeholder="Your business name"/>
+          </div>
+          <div class="fg">
+            <label class="flabel">Your Rating *</label>
+            <div class="star-row" id="starRow">
+              <span class="sbtn" onclick="setRating(1)">★</span>
+              <span class="sbtn" onclick="setRating(2)">★</span>
+              <span class="sbtn" onclick="setRating(3)">★</span>
+              <span class="sbtn" onclick="setRating(4)">★</span>
+              <span class="sbtn" onclick="setRating(5)">★</span>
+            </div>
+          </div>
+          <div class="fg">
+            <label class="flabel">Service Used</label>
+            <select class="fselect" id="rv_svc">
+              <option value="">Select...</option>
+              <option>Reels Editing</option>
+              <option>Content Strategy</option>
+              <option>Full Management</option>
+              <option>Multiple Services</option>
+            </select>
+          </div>
+          <div class="fg full">
+            <label class="flabel">Your Review *</label>
+            <textarea class="ftextarea" id="rv_text" placeholder="Tell others about your experience with OnlyContent Agency..."></textarea>
+          </div>
+        </div>
+        <button class="rv-submit" onclick="submitReview()">✨ Submit My Review</button>
+        <div class="rv-note">🔍 Reviews are manually approved before going live on this page.</div>
+      </div>
+      <div class="rv-done" id="rvDone">
+        <div class="rv-done-icon">🙏</div>
+        <div class="rv-done-title">Thank you!</div>
+        <div class="rv-done-sub">Your review has been submitted and sent to us on WhatsApp.<br/>Once approved it will appear on this page.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- CONTACT FORM -->
+<section id="contact" style="padding:100px 48px 120px;">
+  <div class="contact-section">
+    <div class="reveal">
+      <div class="section-label" style="justify-content:center;">Start a Project</div>
+      <h2 class="section-title" style="text-align:center;">Ready to go<br/><span>viral in Belgavi?</span></h2>
+      <p style="color:var(--muted);margin-top:16px;font-size:15px;line-height:1.7;">Fill in your details — we reply within 24 hours on WhatsApp.</p>
+    </div>
+    <div class="main-form-box reveal d1">
+      <div id="mainForm">
+        <div class="fgrid">
+          <div class="fg">
+            <label class="flabel">Your Name *</label>
+            <input class="finput" id="f_name" type="text" placeholder="Your name"/>
+          </div>
+          <div class="fg">
+            <label class="flabel">Brand / Business *</label>
+            <input class="finput" id="f_brand" type="text" placeholder="Your business name"/>
+          </div>
+          <div class="fg">
+            <label class="flabel">WhatsApp Number *</label>
+            <input class="finput" id="f_phone" type="tel" placeholder="+91 98765 43210"/>
+          </div>
+          <div class="fg">
+            <label class="flabel">Email Address</label>
+            <input class="finput" id="f_email" type="email" placeholder="you@brand.com"/>
+          </div>
+          <div class="fg">
+            <label class="flabel">Instagram Handle</label>
+            <input class="finput" id="f_insta" type="text" placeholder="@yourbrand"/>
+          </div>
+          <div class="fg">
+            <label class="flabel">Service Needed *</label>
+            <select class="fselect" id="f_svc">
+              <option value="">Select a service...</option>
+              <option>Reels Editing — ₹899/reel</option>
+              <option>Content Strategy — ₹3,000/month</option>
+              <option>Full Management — ₹9,000/month</option>
+              <option>Not sure yet — need consultation</option>
+            </select>
+          </div>
+          <div class="fg full">
+            <label class="flabel">About Your Brand &amp; Goals *</label>
+            <textarea class="ftextarea" id="f_msg" placeholder="What does your brand do? What are your content goals? Any ideas or references you love?"></textarea>
+          </div>
+        </div>
+        <button class="main-submit" onclick="submitContact()">🚀 Send My Project Request</button>
+        <div class="fnote">🔒 We reply within 24 hours on WhatsApp · Belagavi, Karnataka</div>
+      </div>
+      <div class="success-box" id="successBox">
+        <div style="font-size:64px">🎉</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:28px;color:var(--white);margin-top:16px;">Request Received!</div>
+        <p style="color:var(--muted);margin-top:8px;line-height:1.6;">We'll WhatsApp you within <strong style="color:var(--accent)">24 hours</strong> with your custom content plan.</p>
+        <a href="https://wa.me/919986137767" target="_blank" class="btn-primary" style="margin-top:24px;display:inline-flex;justify-content:center;">💬 WhatsApp Us Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WA FLOAT -->
+<a class="wa-float" href="https://wa.me/919986137767" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<footer>
+  <div class="footer-logo">Only<span>Content</span> Agency</div>
+  <p>Making Belagavi brands unforgettable, one Reel at a time 🎬</p>
+  <p style="margin-top:8px;">Belagavi, Karnataka · <a href="https://wa.me/919986137767" style="color:var(--accent);text-decoration:none;">+91 99861 37767</a></p>
+</footer>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cursor'),trail=document.getElementById('cursorTrail');
+let mx=0,my=0,tx=0,ty=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function anim(){tx+=(mx-tx)*.12;ty+=(my-ty)*.12;trail.style.left=tx+'px';trail.style.top=ty+'px';requestAnimationFrame(anim);})();
+
+// COUNTERS
+function animCount(el,target,sfx,dur){let s=0,step=target/60;const id=setInterval(()=>{s+=step;if(s>=target){s=target;clearInterval(id);}el.textContent=Math.floor(s)+sfx;},dur/60);}
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animCount(document.getElementById('c1'),20,'+',1500);animCount(document.getElementById('c2'),3,'M+',1500);animCount(document.getElementById('c3'),98,'%',1500);obs.disconnect();}});},{threshold:.3});
+obs.observe(document.querySelector('.hero-stats'));
+
+// SCROLL REVEAL
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+// PARALLAX
+window.addEventListener('scroll',()=>{document.querySelector('.hero-grid').style.transform=`translateY(${window.scrollY*.3}px)`;});
+
+// STAR RATING
+let rating=0;
+function setRating(v){rating=v;document.querySelectorAll('.sbtn').forEach((s,i)=>s.classList.toggle('on',i<v));}
+
+// STORAGE KEYS
+const PK='oc_pending',AK='oc_approved',PASS='onlycontent2024';
+
+// SUBMIT REVIEW
+function submitReview(){
+  const name=document.getElementById('rv_name').value.trim();
+  const co=document.getElementById('rv_co').value.trim();
+  const text=document.getElementById('rv_text').value.trim();
+  const svc=document.getElementById('rv_svc').value;
+  if(!name||!co||!text||!rating){alert('Please fill all required fields and select a rating.');return;}
+  const r={id:Date.now(),name,co,rating,text,svc,date:new Date().toLocaleDateString('en-IN')};
+  const pending=JSON.parse(localStorage.getItem(PK)||'[]');
+  pending.push(r);
+  localStorage.setItem(PK,JSON.stringify(pending));
+  const msg=`⭐ *NEW REVIEW — OnlyContent Agency*\n\n👤 *Name:* ${name}\n🏢 *Brand:* ${co}\n⭐ *Rating:* ${'★'.repeat(rating)}\n🎯 *Service:* ${svc||'Not specified'}\n\n📝 *Review:*\n"${text}"\n\n_Go to the website admin panel to approve or reject._`;
+  window.open(`https://wa.me/919986137767?text=${encodeURIComponent(msg)}`,'_blank');
+  document.getElementById('rvForm').style.display='none';
+  document.getElementById('rvDone').style.display='block';
+}
+
+// RENDER APPROVED
+function renderApproved(){
+  const approved=JSON.parse(localStorage.getItem(AK)||'[]');
+  const c=document.getElementById('liveReviews');
+  if(!approved.length){c.innerHTML='';return;}
+  const cols=['linear-gradient(135deg,#ff3c00,#ff8c42)','linear-gradient(135deg,#7c3aed,#a855f7)','linear-gradient(135deg,#059669,#10b981)','linear-gradient(135deg,#0284c7,#38bdf8)','linear-gradient(135deg,#d97706,#fbbf24)'];
+  c.innerHTML=`<div class="live-reviews-grid">${approved.map((r,i)=>`<div class="review-card"><div class="stars">${'<span class="star">★</span>'.repeat(r.rating)}</div><div class="review-text">"${r.text}"</div><div class="review-author"><div class="av" style="background:${cols[i%cols.length]}">${r.name[0].toUpperCase()}</div><div><div class="author-name">${r.name}</div><div class="author-co">${r.co} · ${r.date}</div></div></div></div>`).join('')}</div>`;
+}
+
+// ADMIN — secret URL: yoursite.com/#admin
+function checkAdminHash(){
+  if(window.location.hash==='#admin'){
+    const p=prompt('Admin password:');
+    if(p!==PASS){alert('Wrong password.');window.location.hash='';return;}
+    const panel=document.getElementById('adminPanel');
+    panel.style.display='block';
+    renderPending();
+    panel.scrollIntoView({behavior:'smooth'});
+  }
+}
+window.addEventListener('hashchange',checkAdminHash);
+checkAdminHash();
+function renderPending(){
+  const pending=JSON.parse(localStorage.getItem(PK)||'[]');
+  const list=document.getElementById('pendingList');
+  if(!pending.length){list.innerHTML='<div class="no-pending">✅ No pending reviews.</div>';return;}
+  list.innerHTML=pending.map(r=>`<div class="pcard" id="pc${r.id}"><div class="pname">${r.name} — ${r.co}</div><div class="pco">${r.svc||''} · ${r.date}</div><div class="pstars">${'★'.repeat(r.rating)}</div><div class="ptext">"${r.text}"</div><div class="pactions"><button class="abtn" onclick="approve(${r.id})">✅ Approve &amp; Publish</button><button class="rbtn" onclick="reject(${r.id})">❌ Reject</button></div></div>`).join('');
+}
+function approve(id){
+  let p=JSON.parse(localStorage.getItem(PK)||'[]');
+  const r=p.find(x=>x.id===id);if(!r)return;
+  p=p.filter(x=>x.id!==id);localStorage.setItem(PK,JSON.stringify(p));
+  const a=JSON.parse(localStorage.getItem(AK)||'[]');a.push(r);localStorage.setItem(AK,JSON.stringify(a));
+  document.getElementById('pc'+id)?.remove();
+  renderApproved();
+  if(!p.length)document.getElementById('pendingList').innerHTML='<div class="no-pending">✅ No pending reviews.</div>';
+}
+function reject(id){
+  let p=JSON.parse(localStorage.getItem(PK)||'[]');p=p.filter(x=>x.id!==id);localStorage.setItem(PK,JSON.stringify(p));
+  document.getElementById('pc'+id)?.remove();
+  if(!p.length)document.getElementById('pendingList').innerHTML='<div class="no-pending">✅ No pending reviews.</div>';
+}
+
+// CONTACT SUBMIT
+function submitContact(){
+  const name=document.getElementById('f_name').value.trim();
+  const brand=document.getElementById('f_brand').value.trim();
+  const phone=document.getElementById('f_phone').value.trim();
+  const svc=document.getElementById('f_svc').value;
+  const msg=document.getElementById('f_msg').value.trim();
+  if(!name||!brand||!phone||!svc||!msg){alert('Please fill all required fields (*)');return;}
+  const email=document.getElementById('f_email').value.trim();
+  const insta=document.getElementById('f_insta').value.trim();
+  const wa=`🚀 *NEW PROJECT REQUEST — OnlyContent Agency*\n\n👤 *Name:* ${name}\n🏢 *Brand:* ${brand}\n📱 *WhatsApp:* ${phone}\n📧 *Email:* ${email||'Not provided'}\n📸 *Instagram:* ${insta||'Not provided'}\n🎯 *Service:* ${svc}\n\n📝 *Message:*\n${msg}\n\n_Sent via OnlyContent Agency website · Belagavi, Karnataka_`;
+  window.open(`https://wa.me/919986137767?text=${encodeURIComponent(wa)}`,'_blank');
+  document.getElementById('mainForm').style.display='none';
+  document.getElementById('successBox').style.display='block';
+}
+
+renderApproved();
+</script>
+</body>
+</html>
